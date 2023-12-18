@@ -34,6 +34,9 @@ module.exports = {
           options.descritption.max
         )
       ).isLength(options.name),
+      body("price").isNumeric().withMessage("Price là số"),
+      body("image").isURL().withMessage("image không đúng định dạng url"),
+
     ];
   },
 };
