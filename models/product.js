@@ -17,13 +17,13 @@ module.exports ={
         var limit = parseInt(query.limit)||2;
         var page = parseInt(query.page)||1;
         var skip = (page-1)*limit;
-        return Schemaproduct.find(Search).select('name').sort(sort).limit(limit).skip(skip).exec();
+        return Schemaproduct.find(Search).select().sort(sort).limit(limit).skip(skip).exec();
     },
     getOne:function(id){
-        return modelproduct.findById(id);
+        return modelproduct.find(id);
     },
     getByName:function (name){
-        return Schemaproduct.findOne({}).exec();
+        return Schemaproduct.findOne({name:name}).exec();
     },
     createproduct:function(product){
         return new Schemaproduct(product).save();

@@ -43,7 +43,7 @@ router.post('/add',validate.validator(),
     responseData.responseReturn(res, 200, true, newproduct);
   }
 });
-router.put('/edit/:id', async function (req, res, next) {
+router.put('/edit/:id',validate.validator(), async function (req, res, next) {
   try {
     var product = await modelproduct.findByIdAndUpdate(req.params.id, req.body, { returnDocument: 'after' });
     responseData.responseReturn(res, 200, true, product);
