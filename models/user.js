@@ -20,12 +20,15 @@ module.exports ={
         return SchemaUser.find(Search).select('userName password').sort(sort).limit(limit).skip(skip).exec();
     },
     getOne:function(id){
-        return modelUser.findById(id);
+        return SchemaUser.findById(id);
     },
     getByName:function (name){
-        return SchemaUser.findOne({}).exec();
+        return SchemaUser.findOne({userName:name}).exec();
     },
     createUser:function(user){
         return new SchemaUser(user).save();
+    },
+    login:function ( userName, password){
+        return SchemaUser.checkLogin(userName,password);
     }
 }

@@ -10,6 +10,7 @@ const {validationResult} = require('express-validator');
 
 
 
+
 router.get('/', async function (req, res, next) {
   console.log(req.query);
   var usersAll = await modelUser.getall(req.query);
@@ -34,11 +35,13 @@ router.post('/add',validate.validator(),
   if (user) {
     responseData.responseReturn(res, 404, false, "user da ton tai");
   } else {
+   
     const newUser = await modelUser.createUser({
       userName: req.body.userName,
       email: req.body.email,
-      password: req.body.password
+      password: req.body.password,
     })
+    
     responseData.responseReturn(res, 200, true, newUser);
   }
 });
